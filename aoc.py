@@ -24,7 +24,7 @@ def get_session():
         return session
 
 
-def get_raw_input(year: int, day: int) -> List[str]:
+def get_real_input(year: int, day: int) -> List[str]:
     local = os.path.join(f"{year}", "inputs", f"{day}.txt")
 
     if not os.path.exists(local):
@@ -37,6 +37,20 @@ def get_raw_input(year: int, day: int) -> List[str]:
             with open(local, 'w') as f:
                 f.write(response.text)
         print(f"Input file saved at {local}")
+
+    with open(local) as f:
+        return [line.rstrip('\n') for line in f.readlines()]
+
+
+def get_test_input(year: int, day: int) -> List[str]:
+    local = os.path.join(f"{year}", "inputs", f"test_{day}.txt")
+
+    if not os.path.exists(local):
+        print(f"Test input {local} not found.")
+        os.makedirs(os.path.dirname(local), exist_ok=True)
+        open(local, 'a').close()  # create empty file
+        print("Empty file created. Copy in your tests!")
+        sys.exit()
 
     with open(local) as f:
         return [line.rstrip('\n') for line in f.readlines()]
@@ -61,26 +75,32 @@ def get_solution(year: int, day: int) -> Tuple[Callable, Callable]:
 def parse_arg():
     parser = argparse.ArgumentParser()
     parser.add_argument("year", type=int, choices=_YEARS, metavar="year",
-                        help="Allowed values from 2015 to 2029.")
+                        help="allowed values from 2015 to 2029")
     parser.add_argument("day", type=int, choices=_DAYS, metavar="day",
-                        help="Allowed values from 1 to 25.")
+                        help="allowed values from 1 to 25")
+    parser.add_argument("-t", "--test", action="store_true",
+                        help="use test input")
     args = parser.parse_args()
     return args
 
 
 def main():
     args = parse_arg()
-    raw_input = get_raw_input(**vars(args))
-    part1, part2 = get_solution(**vars(args))
+    year, day = args.year, args.day
+    if args.test:
+        input = get_test_input(year, day)
+    else:
+        input = get_real_input(year, day)
+    part1, part2 = get_solution(year, day)
 
     start = time.perf_counter()
-    ans1 = part1(raw_input)
+    ans1 = part1(input)
     elapsed = time.perf_counter() - start
     print(f"Part 1 answer: {ans1}")
     print(f"Part 1 time: {elapsed:.2f}s")
 
     start = time.perf_counter()
-    ans2 = part2(raw_input)
+    ans2 = part2(input)
     elapsed = time.perf_counter() - start
     print(f"Part 2 answer: {ans2}")
     print(f"Part 2 time: {elapsed:.2f}s")
