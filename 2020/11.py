@@ -1,7 +1,4 @@
-from typing import List
-
-
-def _parse_input(raw_input: List[str]):
+def _parse_input(raw_input: list[str]):
     return [list(line) for line in raw_input]
 
 
@@ -73,7 +70,7 @@ class SeatGridVisible(SeatGrid):
                 yield newxy
 
 
-def part1(raw_input: List[str]):
+def part1(raw_input: list[str]):
     grid = _parse_input(raw_input)
     seats = SeatGrid(grid)
     while not seats.step():
@@ -81,7 +78,7 @@ def part1(raw_input: List[str]):
     return seats.count_occupied()
 
 
-def part2(raw_input: List[str]):
+def part2(raw_input: list[str]):
     grid = _parse_input(raw_input)
     seats = SeatGridVisible(grid)
     while not seats.step(tolerance=5):

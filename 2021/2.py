@@ -1,13 +1,10 @@
-from typing import List
-
-
-def _parse_input(raw_input: List[str]):
+def _parse_input(raw_input: list[str]):
     for line in raw_input:
         op, x = line.split()
         yield op, int(x)
 
 
-def part1(raw_input: List[str]):
+def part1(raw_input: list[str]):
     commands = _parse_input(raw_input)
     horizontal_position = depth = 0
     for op, x in commands:
@@ -20,7 +17,7 @@ def part1(raw_input: List[str]):
     return horizontal_position * depth
 
 
-def part2(raw_input: List[str]):
+def part2(raw_input: list[str]):
     commands = _parse_input(raw_input)
     horizontal_position = depth = aim = 0
     for op, x in commands:

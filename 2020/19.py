@@ -1,8 +1,7 @@
-from typing import List
 import itertools as it
 
 
-def _parse_input(raw_input: List[str]):
+def _parse_input(raw_input: list[str]):
     rules = dict()
     msgs = []
     for line in raw_input:
@@ -31,13 +30,13 @@ class StringMatching:
         return strs
 
 
-def part1(raw_input: List[str]):
+def part1(raw_input: list[str]):
     rules, msgs = _parse_input(raw_input)
     matchings = StringMatching(rules).matching_strs(0)
     return sum(msg in matchings for msg in msgs)
 
 
-def part2(raw_input: List[str]):
+def part2(raw_input: list[str]):
     rules, msgs = _parse_input(raw_input)
     strmatch = StringMatching(rules)
     pres = strmatch.matching_strs(42)

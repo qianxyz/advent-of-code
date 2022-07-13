@@ -1,7 +1,4 @@
-from typing import List
-
-
-def _parse_input(raw_input: List[str]):
+def _parse_input(raw_input: list[str]):
     for line in raw_input:
         yield [d if d in "+*()" else int(d) for d in line.replace(' ', '')]
 
@@ -57,13 +54,13 @@ class EvaluatorAdditionFirst(Evaluator):
         return {'+': 2, '*': 1, '(': 0}[op]
 
 
-def part1(raw_input: List[str]):
+def part1(raw_input: list[str]):
     exprs = _parse_input(raw_input)
     ev = EvaluatorLeftToRight()
     return sum(ev.postfix_eval(ev.infix_to_postfix(infix)) for infix in exprs)
 
 
-def part2(raw_input: List[str]):
+def part2(raw_input: list[str]):
     exprs = _parse_input(raw_input)
     ev = EvaluatorAdditionFirst()
     return sum(ev.postfix_eval(ev.infix_to_postfix(infix)) for infix in exprs)

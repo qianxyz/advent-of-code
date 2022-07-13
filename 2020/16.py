@@ -1,9 +1,8 @@
-from typing import List
 import re
 import math
 
 
-def _parse_input(raw_input: List[str]):
+def _parse_input(raw_input: list[str]):
     fields = dict()
     tickets = []
     for line in raw_input:
@@ -59,13 +58,13 @@ class TicketValidation:
         return {k: v for k, v in zip(ord_fields, self.yours)}
 
 
-def part1(raw_input: List[str]):
+def part1(raw_input: list[str]):
     fields, yours, nearby = _parse_input(raw_input)
     tval = TicketValidation(fields, yours, nearby)
     return sum(n for t in nearby for n in t if not tval.is_valid_value(n))
 
 
-def part2(raw_input: List[str]):
+def part2(raw_input: list[str]):
     fields, yours, nearby = _parse_input(raw_input)
     tval = TicketValidation(fields, yours, nearby)
     yours_dict = tval.your_ticket_as_dict()

@@ -1,9 +1,8 @@
-from typing import List
 import re
 import itertools as it
 
 
-def _parse_input(raw_input: List[str]):
+def _parse_input(raw_input: list[str]):
     for line in raw_input:
         mask = re.match(r"mask = ([01X]{36})", line)
         if mask:
@@ -55,14 +54,14 @@ class BitmaskAlt(Bitmask):
             yield int(''.join(masked), 2)
 
 
-def part1(raw_input: List[str]):
+def part1(raw_input: list[str]):
     program = _parse_input(raw_input)
     bitmask = Bitmask(program)
     bitmask.run()
     return bitmask.sum_memory()
 
 
-def part2(raw_input: List[str]):
+def part2(raw_input: list[str]):
     program = _parse_input(raw_input)
     bitmask = BitmaskAlt(program)
     bitmask.run()

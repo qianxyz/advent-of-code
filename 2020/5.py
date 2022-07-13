@@ -1,7 +1,4 @@
-from typing import List
-
-
-def _parse_input(raw_input: List[str]):
+def _parse_input(raw_input: list[str]):
     return [line for line in raw_input]
 
 
@@ -10,12 +7,12 @@ def seat_to_ID(seat: str):
     return int(''.join(id), 2)
 
 
-def part1(raw_input: List[str]):
+def part1(raw_input: list[str]):
     seats = _parse_input(raw_input)
     return max(seat_to_ID(seat) for seat in seats)
 
 
-def part2(raw_input: List[str]):
+def part2(raw_input: list[str]):
     seats = _parse_input(raw_input)
     ids = [seat_to_ID(seat) for seat in seats]
     ids.sort()

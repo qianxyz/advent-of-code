@@ -1,8 +1,7 @@
-from typing import List
 import numpy as np
 
 
-def _parse_input(raw_input: List[str]):
+def _parse_input(raw_input: list[str]):
     return [(line[0], int(line[1:])) for line in raw_input]
 
 
@@ -55,14 +54,14 @@ class ShipWithWaypoint(Ship):
                 self.position += num * self.waypoint
 
 
-def part1(raw_input: List[str]):
+def part1(raw_input: list[str]):
     instructions = _parse_input(raw_input)
     ship = Ship(instructions)
     ship.run()
     return ship.manhattan_distance()
 
 
-def part2(raw_input: List[str]):
+def part2(raw_input: list[str]):
     instructions = _parse_input(raw_input)
     ship = ShipWithWaypoint(instructions)
     ship.run()

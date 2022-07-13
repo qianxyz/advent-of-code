@@ -1,11 +1,8 @@
-from typing import List
-
-
-def _parse_input(raw_input: List[str]):
+def _parse_input(raw_input: list[str]):
     return [int(d) for d in raw_input[0].split(',')]
 
 
-def part1(raw_input: List[str]):
+def part1(raw_input: list[str]):
     nums = _parse_input(raw_input)
     while len(nums) < 2020:
         occ = [i for i, n in enumerate(nums) if n == nums[-1]]
@@ -16,7 +13,7 @@ def part1(raw_input: List[str]):
     return nums[-1]
 
 
-def part2(raw_input: List[str]):
+def part2(raw_input: list[str]):
     nums = _parse_input(raw_input)
     fst_occ = {n: i for i, n in enumerate(nums)}
     snd_occ = dict()

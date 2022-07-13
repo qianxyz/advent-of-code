@@ -5,7 +5,6 @@ import requests
 import argparse
 import importlib
 import shutil
-from typing import List, Tuple, Callable
 
 _TEMPLATE = "_template.py"
 _SESSION = ".session"
@@ -24,7 +23,7 @@ def get_session():
         return session
 
 
-def get_real_input(year: int, day: int) -> List[str]:
+def get_real_input(year: int, day: int) -> list[str]:
     local = os.path.join(f"{year}", "inputs", f"{day}.txt")
 
     if not os.path.exists(local):
@@ -42,7 +41,7 @@ def get_real_input(year: int, day: int) -> List[str]:
         return [line.rstrip('\n') for line in f.readlines()]
 
 
-def get_test_input(year: int, day: int) -> List[str]:
+def get_test_input(year: int, day: int) -> list[str]:
     local = os.path.join(f"{year}", "inputs", f"test_{day}.txt")
 
     if not os.path.exists(local):
@@ -56,7 +55,7 @@ def get_test_input(year: int, day: int) -> List[str]:
         return [line.rstrip('\n') for line in f.readlines()]
 
 
-def get_solution(year: int, day: int) -> Tuple[Callable, Callable]:
+def get_solution(year: int, day: int) -> tuple:
     script = os.path.join(f"{year}", f"{day}.py")
 
     if not os.path.exists(script):

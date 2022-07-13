@@ -1,20 +1,17 @@
-from typing import List
-
-
-def _parse_input(raw_input: List[str]):
+def _parse_input(raw_input: list[str]):
     depart, buses = raw_input
     buses = [None if bus == 'x' else int(bus) for bus in buses.split(',')]
     return int(depart), buses
 
 
-def part1(raw_input: List[str]):
+def part1(raw_input: list[str]):
     depart, buses = _parse_input(raw_input)
     waits = [(-depart % bus, bus) for bus in buses if bus is not None]
     min_time, bus_id = min(waits)
     return min_time * bus_id
 
 
-def part2(raw_input: List[str]):
+def part2(raw_input: list[str]):
     # Chinese remainder theorem
     _, buses = _parse_input(raw_input)
     nas = [(bus, -i % bus) for i, bus in enumerate(buses) if bus is not None]

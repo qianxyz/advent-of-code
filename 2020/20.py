@@ -1,7 +1,4 @@
-from typing import List
-
-
-def _parse_input(raw_input: List[str]):
+def _parse_input(raw_input: list[str]):
     pieces = dict()
     tile_ID = 0
     for line in raw_input:
@@ -27,7 +24,7 @@ class Piece:
         return set(map("".join, sides))
 
 
-def part1(raw_input: List[str]):
+def part1(raw_input: list[str]):
     pieces = _parse_input(raw_input)
     pieces = [Piece(id, grid) for id, grid in pieces.items()]
     prod = 1
@@ -39,6 +36,6 @@ def part1(raw_input: List[str]):
     return prod
 
 
-def part2(raw_input: List[str]):
+def part2(raw_input: list[str]):
     _ = _parse_input(raw_input)
     return NotImplemented

@@ -1,8 +1,7 @@
-from typing import List
 import itertools as it
 
 
-def _parse_input(raw_input: List[str]):
+def _parse_input(raw_input: list[str]):
     return [line for line in raw_input]
 
 
@@ -61,14 +60,14 @@ class Cubes4D(Cubes):
                 yield (x + dx, y + dy, z + dz, w + dw)
 
 
-def part1(raw_input: List[str]):
+def part1(raw_input: list[str]):
     grid = _parse_input(raw_input)
     cubes = Cubes(grid)
     cubes.steps(6)
     return cubes.num_actives()
 
 
-def part2(raw_input: List[str]):
+def part2(raw_input: list[str]):
     grid = _parse_input(raw_input)
     cubes = Cubes4D(grid)
     cubes.steps(6)

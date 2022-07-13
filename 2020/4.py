@@ -1,20 +1,19 @@
-from typing import List, Dict
 import re
 import itertools as it
 
 
-def _parse_input(raw_input: List[str]):
+def _parse_input(raw_input: list[str]):
     spl = [' '.join(y) for x, y in it.groupby(raw_input, bool) if x]
     for entry in spl:
         yield {k: v for k, v in re.findall(r"(\S+):(\S+)", entry)}
 
 
-def is_valid1(pp: Dict):
+def is_valid1(pp: dict):
     fields = {"byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid"}
     return fields.issubset(pp.keys())
 
 
-def is_valid2(pp: Dict):
+def is_valid2(pp: dict):
     return (is_valid1(pp)
             and pp["byr"] in [str(y) for y in range(1920, 2003)]
             and pp["iyr"] in [str(y) for y in range(2010, 2021)]
@@ -26,11 +25,11 @@ def is_valid2(pp: Dict):
             and re.fullmatch(r"\d{9}", pp["pid"]) is not None)
 
 
-def part1(raw_input: List[str]):
+def part1(raw_input: list[str]):
     pps = _parse_input(raw_input)
     return sum(is_valid1(pp) for pp in pps)
 
 
-def part2(raw_input: List[str]):
+def part2(raw_input: list[str]):
     pps = _parse_input(raw_input)
     return sum(is_valid2(pp) for pp in pps)
