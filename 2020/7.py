@@ -5,7 +5,9 @@ from collections import defaultdict
 
 def _parse_input(raw_input: List[str]):
     for line in raw_input:
-        outer = re.match(r"(.*?) bags", line).group(1)
+        m = re.match(r"(.*?) bags", line)
+        assert m is not None
+        outer = m.group(1)
         inners = re.findall(r"(\d+) (.*?) bag", line)
         inners = [(int(d), s) for d, s in inners]
         yield outer, inners

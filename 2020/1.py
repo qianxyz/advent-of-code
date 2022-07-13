@@ -10,6 +10,7 @@ def sum_k(nums: List[int], k=2, target=2020):
     for ns in it.combinations(nums, k):
         if sum(ns) == target:
             return ns
+    assert False
 
 
 def part1(raw_input: List[str]):

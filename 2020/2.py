@@ -5,6 +5,7 @@ import re
 def _parse_input(raw_input: List[str]):
     for line in raw_input:
         mo = re.search(r"(\d+)-(\d+) (\w): (\w+)", line)
+        assert mo is not None
         n0, n1, char, s = mo.groups()
         yield int(n0), int(n1), char, s
 

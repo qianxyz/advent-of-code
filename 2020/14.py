@@ -18,7 +18,7 @@ class Bitmask:
 
     def __init__(self, program) -> None:
         self.program = program
-        self.mask = None
+        self.mask = ""
         self.memory = dict()
 
     def mask_address(self, address):

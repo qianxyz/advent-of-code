@@ -45,6 +45,7 @@ def part2(raw_input: List[str]):
     matches = 0
     for msg in msgs:
         chunks = list(msg[i:i+8] for i in range(0, len(msg), 8))
+        i = 0
         for i, chunk in enumerate(chunks):
             if chunk not in pres:
                 break

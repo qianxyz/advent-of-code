@@ -3,6 +3,7 @@ from typing import List
 
 def _parse_input(raw_input: List[str]):
     pieces = dict()
+    tile_ID = 0
     for line in raw_input:
         if line.startswith("Tile"):
             tile_ID = int(line[5:-1])

@@ -1,5 +1,4 @@
 from typing import List
-import itertools as it
 
 
 def _parse_input(raw_input: List[str]):
@@ -22,9 +21,11 @@ def part2(raw_input: List[str]):
     nas.sort(reverse=True)
     nn, aa = 1, 0
     for n, a in nas:
-        for akn in it.count(start=aa, step=nn):
+        akn = aa
+        while True:
             if akn % n == a:
                 break
+            akn += nn
         aa = akn
         nn *= n
     return aa
