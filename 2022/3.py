@@ -13,12 +13,10 @@ def priority(c):
 
 def part1(raw_input: list[str]):
     input = _parse_input(raw_input)
-    result = 0
-    for line in input:
-        l1 = line[:len(line) // 2]
-        l2 = line[len(line) // 2:]
-        result += priority(set(l1).intersection(l2).pop())
-    return result
+    return sum(priority(set.intersection(
+        set(line[:len(line) // 2]),
+        set(line[len(line) // 2:])
+    ).pop()) for line in input)
 
 
 def part2(raw_input: list[str]):
